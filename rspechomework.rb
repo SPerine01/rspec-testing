@@ -1,6 +1,5 @@
-require "/Users/MaySupreme/Documents/NYCDA/Week-8/Day-4/testing/rspechw/test-classes/article.rb"
-require "/Users/MaySupreme/Documents/NYCDA/Week-8/Day-4/testing/rspechw/test-classes/transaction.rb"
-
+require "/Users/MaySupreme/Documents/NYCDA/Week-8/Day-4/testing/rspechw/article.rb"
+require "/Users/MaySupreme/Documents/NYCDA/Week-8/Day-4/testing/rspechw/transaction.rb"
 RSpec.configure do |rspec|
     rspec.color = true
 end
