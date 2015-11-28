@@ -29,15 +29,15 @@ describe Article do
 
 
     context "#authors_name_starts_with_q?" do
-            it "returns false if authors_name_starts_with_q?" do
-                expect(article.authors_name_starts_with_q).to eq(false)
+        it "returns false if name of author starts with q" do
+            expect(article.authors_name_starts_with_q?).to eq(false)
         end
     end
 
 
     context "#string_empty?" do
-            it "returns false if there is a string present" do
-                expect(article.string_empty?("")).to eq(false)
+            it "returns true if there is a string present" do
+                expect(article.string_empty?("")).to eq(true)
         end
     end
 
@@ -58,7 +58,7 @@ describe Article do
 
     context "#author_as_html" do
         it "returns author as html" do
-            expect(article.author_as_html).to eq("<b>May-May</b>")
+            expect(article.author_as_html).to eq("<h3>May-May</h3>")
         end
     end
 
@@ -76,39 +76,38 @@ describe Article do
 describe Transaction do
   let(:transaction) { Transaction.new(credit_account: 1200, debit_account: 8000, amount: 1000, time: Time.now) }
 
-    context "valid number" do
-        it "returns true if credit has valid_account_number" do
-            expect(transaction.valid_account_number?(transaction.credit_account)).to eq(true)
-        end
-
-        it "returns true if debit has valid_account_number" do
+    context "#valid_account_number?" do
+        it "returns true if credit has valid number" do
             expect(transaction.valid_account_number?(transaction.credit_account)).to eq(true)
         end
     end
 
-    context "valid_amount?" do
-        it "returns the valid amount" do
+    context "#valid_amount?" do
+        it "returns true if the amount is valid" do
             expect(transaction.valid_amount?(transaction.amount)).to eq(true)
         end
     end
 
-    context "valid_time?" do
+    context "#valid_time?" do
         it "return true if the time is valid" do
             expect(transaction.valid_time(transaction.time(Time.now))).to eq(true)
         end
     end
 
-    context "amount_to_currency" do
-        it "changes the amount in currency" do
-            expect(transaction.amount_to_currency).to eq(1000)
+    context "#amount_to_currency" do
+        it "changes the amount in monetary amount" do
+            expect(transaction.amount_to_currency).to eq(1000.00)
         end
     end
 
 
-    context "pretty_time" do
-        it "displays the time format" do
-            expect(transaction.pretty_time).to eq(Time.now).strftime("%A, %d %b %Y %l:%M %p")
+    # context "pretty_time" do
+    #     it "displays the time format" do
+            # expect(transaction.pretty_time).to eq(Time.now).strftime("%A, %d %b %Y %l:%M %p")
+        context "#pretty_time" do
+            it "display format of Time method" do
+                expect(transaction.pretty_time).to eq(Time.now.strftime("%A, %d %b %Y %l:%M %p"))
+            end
         end
-    end
 
 end
