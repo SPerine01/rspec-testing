@@ -90,13 +90,13 @@ describe Transaction do
 
     context "#valid_time?" do
         it "return true if the time is valid" do
-            expect(transaction.valid_time(Time.now)).to eq(true)
+            expect(transaction.valid_time?(Time.now)).to eq(true)
         end
     end
 
     context "#amount_to_currency?" do
         it "changes the amount in monetary amount" do
-            expect(transaction.amount_to_currency).to eq(1000.00)
+            expect(transaction.amount_to_currency).to eq("$10.00")
         end
     end
 
