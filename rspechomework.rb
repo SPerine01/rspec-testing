@@ -1,5 +1,5 @@
-require "article.rb"
-require "transaction.rb"
+require "./article.rb"
+require "./transaction.rb"
 RSpec.configure do |rspec|
     rspec.color = true
 end
@@ -43,8 +43,8 @@ describe Article do
 
 
     context "#article_as_html" do
-        it "returns title, author, body as html"
-            expect(article.article_as_html).to eq("<h1>Squishy</h1><h3>May-May</h3><p>blah blah blah blah</p>")
+        it "returns title, author, body as html" do
+            expect(article.article_as_html).to eq("<h1>Squishy</h1><b>May-May</b><p>blah blah blah blah</p>")
         end
     end
 
@@ -58,7 +58,7 @@ describe Article do
 
     context "#author_as_html" do
         it "returns author as html" do
-            expect(article.author_as_html).to eq("<h3>May-May</h3>")
+            expect(article.author_as_html).to eq("<b>May-May</b>")
         end
     end
 
@@ -90,11 +90,11 @@ describe Transaction do
 
     context "#valid_time?" do
         it "return true if the time is valid" do
-            expect(transaction.valid_time(transaction.time(Time.now))).to eq(true)
+            expect(transaction.valid_time(Time.now)).to eq(true)
         end
     end
 
-    context "#amount_to_currency" do
+    context "#amount_to_currency?" do
         it "changes the amount in monetary amount" do
             expect(transaction.amount_to_currency).to eq(1000.00)
         end
@@ -109,5 +109,5 @@ describe Transaction do
                 expect(transaction.pretty_time).to eq(Time.now.strftime("%A, %d %b %Y %l:%M %p"))
             end
         end
-
+    end
 end
